@@ -1,15 +1,7 @@
 <template>
   <div>
-    <input
-      :value="activeDate ? activeDate : today"
-      min="2020-04-01"
-      max="2022-04-30"
-      step="5"
-      class="mx-2 calendar-input border border-slate-300"
-    />
     <div 
-      class="calendar-month max-w-sm w-md-full border-2 mx-auto p-4"
-      @click.self="typeof backdrop === 'function' && backdrop()"
+      class="calendar-month max-w-sm w-md-full border-2 p-4"
     >
       <div class="calendar-month-header">
         <CalendarDateSelector
@@ -38,7 +30,7 @@
           :day="day"
           :is-today="day.date === today"
           :active-date="activeDate"
-          @onUpdateDate="updateActiveDate"
+          @on-update-date="updateActiveDate"
         />
       </ol>
     </div>
@@ -74,6 +66,7 @@ export default {
       activeDate: "",
       viewMonths: false,
       currentM: dayjs().format("MM"),
+      stateOfMonth: null,
       // currentM: '',
       months: [
         {
@@ -126,16 +119,6 @@ export default {
         },
       ],
     };
-  },
-  props: {
-    toggle: {
-      type: Boolean,
-      default: false
-    },
-    backdrop: {
-      type: Function,
-      default: () => {}
-    },
   },
   computed: {
     days() {
@@ -232,14 +215,13 @@ export default {
       return dayjs(date).weekday();
     },
 
-    selectDate(newSelectedDate, newSelectedMonth) {
+    selectDate(newSelectedDate) {
       this.selectedDate = newSelectedDate;
-      this.current = newSelectedMonth;
-      console.log(this.current);
     },
 
     updateActiveDate(label) {
       this.activeDate = label;
+      this.$emit('on-update-date', this.activeDate)
     },
 
     popupMonths(trigger) {
