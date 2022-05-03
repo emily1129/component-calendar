@@ -1,4 +1,11 @@
-# calender
+# calendar
+### Component description:
+#### Write a calendar component that contains the following requirements:
+
+• Render the calendar with 6 rows regardless of the number of days in the month.
+• The days outside the current month is shown in gray (#eeeeee).
+• Click `<`to move to the previous days, months, or years.
+• Click `>` to move to the next days, months, or years.
 
 ## Project setup
 ```
