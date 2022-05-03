@@ -1,6 +1,6 @@
 <template>
   <li
-    class="calendar-day relative p-3 font-medium"
+    class="calendar-day relative p-2 font-medium"
     :class="{
       'text-gray-300': !day.isCurrentMonth,
       'text-red-600': isToday,
@@ -49,7 +49,7 @@ export default {
 
   methods: {
     updateActiveDate() {
-      this.$emit('onUpdateDate', this.label)
+      this.$emit('on-update-date', this.label)
     }
   }
 
@@ -58,6 +58,6 @@ export default {
 
 <style scoped>
 .calendar-day {
-  min-height: 50px;
+  min-height: 45px;
 }
 </style>
